@@ -23,10 +23,7 @@ function getQuote() {
       var r = JSON.parse(response);
       currentQuote = r.quote;
       currentAuthor = r.author;
-      if(inIframe())
-      {
-        $('#tweet-quote').attr('href', 'https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text=' + encodeURIComponent('"' + currentQuote + '" ' + currentAuthor));
-      }
+
       $(".quote-text").animate({
           opacity: 0
         }, 500,
@@ -64,11 +61,7 @@ function getQuote() {
 $(document).ready(function() {
   getQuote();
   $('#new-quote').on('click', getQuote);
-  $('#tweet-quote').on('click', function() {
-    if(!inIframe()) {
-      openURL('https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text=' + encodeURIComponent('"' + currentQuote + '" ' + currentAuthor));
-    }
-  });
+  
   $('#tumblr-quote').on('click', function() {
     if(!inIframe()) {
       openURL('https://www.tumblr.com/widgets/share/tool?posttype=quote&tags=quotes,freecodecamp&caption='+encodeURIComponent(currentAuthor)+'&content=' + encodeURIComponent(currentQuote));
